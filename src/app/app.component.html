@@ -1,0 +1,10 @@
+<h1>Todos</h1>
+
+<div style="margin-bottom: 1rem;">
+  <app-todo *ngFor="let todo of todos$ | async" 
+            [todo]="todo" 
+            (done)="onChange($event, todo)"
+            (close)="onClose(todo)"></app-todo>
+</div>
+
+<button (click)="newTodo()">Ajouter</button>

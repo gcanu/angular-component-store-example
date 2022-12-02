@@ -1,0 +1,7 @@
+<div style="display: flex;">
+  <button (click)="remove()">X</button>
+  <div style="display: flex;" [class.done]="todo.done">
+    <input type="checkbox" (change)="onChange($event)" style="margin-right: 0.5rem;"/>
+    <div style="margin-right: 1rem; font-weight: bold;">{{ todo.name }}</div>
+  <div>{{ todo.description }}</div>
+</div>
