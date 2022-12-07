@@ -13,7 +13,6 @@ export class AppComponent {
   todos$: Observable<Todo[]>;
 
   constructor(private todosStore: TodosStore) {
-    this.todosStore.getTodos();
     this.todos$ = this.todosStore.selectTodos();
   }
 
