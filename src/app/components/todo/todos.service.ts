@@ -23,7 +23,8 @@ export class TodosService {
   ];
 
   getTodos(): Observable<Todo[]> {
-    return timer(500).pipe(
+    return timer(1000).pipe(
+      tap(todos => console.log(`loading todos`)),
       switchMap(() => of(this.todos)),
       tap(todos => console.log(`${todos.length} todos loaded`)),
     );
