@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, timer } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
 import { Todo } from './todo.model';
 
 @Injectable()
@@ -22,7 +23,10 @@ export class TodosService {
   ];
 
   getTodos(): Observable<Todo[]> {
-    return of(this.todos);
+    return timer(500).pipe(
+      switchMap(() => of(this.todos)),
+      tap(todos => console.log(`${todos.length} todos loaded`)),
+    );
   }
 
   create(todo: Todo): Observable<Todo[]> {
