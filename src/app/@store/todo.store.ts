@@ -16,7 +16,7 @@ export class TodosStore extends ComponentStore<TodosState> {
     this.getTodos();
   }
 
-  getTodos = this.effect($ =>
+  getTodos = this.effect(($) =>
     $.pipe(
       switchMap(() => this.todosService.getTodos()),
       tap((todos: Todo[]) => this.addTodos(todos))
@@ -24,7 +24,7 @@ export class TodosStore extends ComponentStore<TodosState> {
   );
 
   selectTodos(): Observable<Todo[]> {
-    return this.select(state => state.todos);
+    return this.select((state) => state.todos);
   }
 
   addTodos = this.updater((state, todos: Todo[]) => {
@@ -37,14 +37,14 @@ export class TodosStore extends ComponentStore<TodosState> {
 
   removeTodo = this.effect((todo$: Observable<Todo>) => {
     return todo$.pipe(
-      switchMap(todo => this.todosService.remove(todo)),
+      switchMap((todo) => this.todosService.remove(todo)),
       tap((todos: Todo[]) => this.addTodos(todos))
     );
   });
 
   updateTodo = this.effect((todo$: Observable<Todo>) => {
     return todo$.pipe(
-      switchMap(todo => this.todosService.update(todo)),
+      switchMap((todo) => this.todosService.update(todo)),
       tap((todos: Todo[]) => this.addTodos(todos))
     );
   });
